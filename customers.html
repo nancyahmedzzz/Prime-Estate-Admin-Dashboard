@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>قاعدة العملاء | Prime Estate</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class', theme: { extend: { fontFamily: { sans: ['Cairo', 'sans-serif'], en: ['Plus Jakarta Sans', 'sans-serif'] } } } };
+    </script>
+    <style> body { font-family: 'Cairo', sans-serif !important; } .font-en { font-family: 'Plus Jakarta Sans', sans-serif !important; } </style>
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="flex h-screen w-full antialiased selection:bg-zinc-300 dark:selection:bg-zinc-700 bg-[var(--bg-main)] transition-colors overflow-hidden">
+    
+    <aside class="w-64 h-full glass-panel border-l border-[var(--border-color)] flex flex-col z-20 flex-shrink-0 transition-colors">
+        <div class="h-20 flex items-center px-6 border-b border-[var(--border-color)] stagger-1">
+            <div class="w-10 h-10 bg-[var(--text-primary)] rounded-xl flex items-center justify-center shadow-lg anim-pulse-ring">
+                <i data-lucide="building-2" class="w-6 h-6 text-[var(--bg-main)]"></i>
+            </div>
+            <span class="mr-4 font-bold text-xl tracking-tight text-[var(--text-primary)] font-en">Prime Estate</span>
+        </div>
+        
+        <nav class="flex-1 py-8 px-4 overflow-y-auto space-y-2 stagger-2">
+            <p class="px-4 text-xs font-bold text-[var(--text-secondary)] uppercase tracking-wider mb-2">القائمة الرئيسية</p>
+            
+            <a href="index.html" class="nav-link flex items-center px-4 py-3 rounded-xl text-[var(--text-secondary)] hover:bg-[var(--hover-bg)] hover:text-[var(--text-primary)] group">
+                <i data-lucide="layout-dashboard" class="w-5 h-5 group-hover:scale-110 transition-transform"></i>
+                <span class="mr-4 text-sm font-semibold">نظرة عامة</span>
+            </a>
+            <a href="analytics.html" class="nav-link flex items-center px-4 py-3 rounded-xl text-[var(--text-secondary)] hover:bg-[var(--hover-bg)] hover:text-[var(--text-primary)] group">
+                <i data-lucide="pie-chart" class="w-5 h-5 group-hover:scale-110 transition-transform"></i>
+                <span class="mr-4 text-sm font-semibold">التحليلات المتقدمة</span>
+            </a>
+            <a href="customers.html" class="nav-link active flex items-center px-4 py-3 rounded-xl text-[var(--text-primary)] group">
+                <i data-lucide="users" class="w-5 h-5 group-hover:scale-110 transition-transform"></i>
+                <span class="mr-4 text-sm font-semibold">العملاء</span>
+                <span class="mr-auto bg-[var(--text-primary)] text-[var(--bg-main)] py-0.5 px-2 rounded-full text-[10px] font-bold font-en">NEW</span>
+            </a>
+            <a href="settings.html" class="nav-link flex items-center px-4 py-3 rounded-xl text-[var(--text-secondary)] hover:bg-[var(--hover-bg)] hover:text-[var(--text-primary)] group">
+                <i data-lucide="settings" class="w-5 h-5 group-hover:scale-110 transition-transform"></i>
+                <span class="mr-4 text-sm font-semibold">الإعدادات</span>
+            </a>
+        </nav>
+
+        <div class="p-6 border-t border-[var(--border-color)] stagger-3">
+            <div class="flex items-center gap-3">
+                <img src="https://ui-avatars.com/api/?name=Nancy+Ahmed&background=000&color=fff&rounded=true" class="w-10 h-10 rounded-full object-cover border-2 border-[var(--border-color)] group-hover:scale-105 transition-transform" alt="نانسي">
+                <div>
+                    <h4 class="text-sm font-bold text-[var(--text-primary)]">نانسي أحمد</h4>
+                    <p class="text-xs text-[var(--text-secondary)]">المدير العام</p>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <div class="flex-1 flex flex-col relative w-full h-full bg-[var(--bg-main)] transition-colors overflow-hidden">
+        
+        <header class="h-20 glass-panel flex items-center justify-between px-8 z-10 sticky top-0 stagger-1">
+            <div class="relative w-96 hidden md:block group">
+                <i data-lucide="search" class="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[var(--text-secondary)] group-hover:text-[var(--accent)] transition-colors"></i>
+                <input type="text" placeholder="البحث بالاسم، التاريخ، أو البريد..." class="w-full bg-[var(--bg-surface)] border border-[var(--border-color)] rounded-full pr-12 pl-4 py-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-[var(--accent)] transition-all text-[var(--text-primary)] placeholder-[var(--text-secondary)] shadow-sm focus:shadow-md">
+            </div>
+            
+            <div class="flex items-center gap-4">
+                <button onclick="toggleTheme()" class="w-10 h-10 rounded-full flex items-center justify-center bg-[var(--bg-surface)] border border-[var(--border-color)] text-[var(--text-primary)] hover:bg-[var(--hover-bg)] transition-all hover:-translate-y-1">
+                    <div class="pointer-events-none">
+                        <i data-lucide="moon" class="w-4 h-4 hidden dark:block"></i>
+                        <i data-lucide="sun" class="w-4 h-4 block dark:hidden"></i>
+                    </div>
+                </button>
+                <button class="w-10 h-10 rounded-full flex items-center justify-center bg-[var(--bg-surface)] border border-[var(--border-color)] text-[var(--text-primary)] hover:bg-[var(--hover-bg)] transition-all relative hover:-translate-y-1">
+                    <i data-lucide="bell" class="w-4 h-4"></i>
+                </button>
+            </div>
+        </header>
+
+        <main class="flex-1 overflow-y-auto w-full p-8 relative">
+            <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-gradient-to-l from-zinc-500/10 to-transparent dark:from-zinc-500/10 rounded-full blur-[100px] pointer-events-none -z-10 anim-pulse-ring"></div>
+            
+            <div class="page-content active" style="opacity: 1; animation: none;">
+                <div class="flex justify-between items-end mb-8 stagger-1">
+                    <div>
+                        <h1 class="text-3xl font-bold text-[var(--text-primary)]">قاعدة العملاء الشاملة</h1>
+                        <p class="text-sm text-[var(--text-secondary)] mt-1 font-medium">سجل كامل للمستثمرين والعملاء في مشاريع الشركة العقارية.</p>
+                    </div>
+                    <button class="bg-[var(--text-primary)] text-[var(--bg-main)] px-5 py-2.5 rounded-xl font-bold text-sm hover:-translate-y-1 transition-transform flex items-center gap-2 shadow-[var(--shadow-md)]">
+                        <i data-lucide="plus" class="w-4 h-4"></i>
+                        عميل جديد
+                    </button>
+                </div>
+
+                <div class="premium-card stagger-2 relative">
+                    <div class="overflow-x-auto w-full max-h-[70vh]">
+                        <table class="w-full text-right border-collapse relative">
+                            <thead class="sticky top-0 bg-[var(--bg-surface)] z-10 shadow-sm border-b border-[var(--border-color)]">
+                                <tr class="text-xs font-bold text-[var(--text-secondary)] uppercase">
+                                    <th class="px-6 py-4">اسم العميل</th>
+                                    <th class="px-6 py-4">البريد الإلكتروني</th>
+                                    <th class="px-6 py-4">إجمالي المشتريات</th>
+                                    <th class="px-6 py-4">الحالة</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-[var(--border-color)] text-sm">
+                                <!-- سيتم إنشاء 30 عميل مصري حقيقي -->
+                                <tr class="hover:bg-[var(--hover-bg)] group cursor-pointer transition-colors"><td class="px-6 py-3"><div class="flex items-center"><img src="https://ui-avatars.com/api/?name=Mahmoud+Ibrahim&background=e2e8f0&color=0f172a" class="w-9 h-9 rounded-full ml-3 border"><span class="font-bold text-[var(--text-primary)]">محمود إبراهيم</span></div></td><td class="px-6 py-3 text-[var(--text-secondary)] font-en">mahmoud.ib@istore.eg</td><td class="px-6 py-3 font-bold text-[var(--text-primary)] font-en">$4,250.00</td><td class="px-6 py-3"><span class="badge badge-success">V.I.P</span></td></tr>
+                                <tr class="hover:bg-[var(--hover-bg)] group cursor-pointer transition-colors"><td class="px-6 py-3"><div class="flex items-center"><img src="https://ui-avatars.com/api/?name=Ahmed+Saeed&background=random" class="w-9 h-9 rounded-full ml-3 border"><span class="font-bold text-[var(--text-primary)]">أحمد سعيد</span></div></td><td class="px-6 py-3 text-[var(--text-secondary)] font-en">ahmed.s@istore.eg</td><td class="px-6 py-3 font-bold text-[var(--text-primary)] font-en">$1,200.00</td><td class="px-6 py-3"><span class="badge badge-success">نشط</span></td></tr>
+                                <tr class="hover:bg-[var(--hover-bg)] group cursor-pointer transition-colors"><td class="px-6 py-3"><div class="flex items-center"><img src="https://ui-avatars.com/api/?name=Yasmine+Tarek&background=random" class="w-9 h-9 rounded-full ml-3 border"><span class="font-bold text-[var(--text-primary)]">ياسمين طارق</span></div></td><td class="px-6 py-3 text-[var(--text-secondary)] font-en">y.tarek@istore.eg</td><td class="px-6 py-3 font-bold text-[var(--text-primary)] font-en">$8,500.50</td><td class="px-6 py-3"><span class="badge badge-success">V.I.P</span></td></tr>
+                                <tr class="hover:bg-[var(--hover-bg)] group cursor-pointer transition-colors"><td class="px-6 py-3"><div class="flex items-center"><img src="https://ui-avatars.com/api/?name=Mostafa+Kamel&background=random" class="w-9 h-9 rounded-full ml-3 border"><span class="font-bold text-[var(--text-primary)]">مصطفى كامل</span></div></td><td class="px-6 py-3 text-[var(--text-secondary)] font-en">m.kamel@istore.eg</td><td class="px-6 py-3 font-bold text-[var(--text-primary)] font-en">$0.00</td><td class="px-6 py-3"><span class="badge badge-warning">جديد</span></td></tr>
+                                <tr class="hover:bg-[var(--hover-bg)] group cursor-pointer transition-colors"><td class="px-6 py-3"><div class="flex items-center"><img src="https://ui-avatars.com/api/?name=Hoda+Soltan&background=random" class="w-9 h-9 rounded-full ml-3 border"><span class="font-bold text-[var(--text-primary)]">هدى سلطان</span></div></td><td class="px-6 py-3 text-[var(--text-secondary)] font-en">hoda.s@istore.eg</td><td class="px-6 py-3 font-bold text-[var(--text-primary)] font-en">$320.00</td><td class="px-6 py-3"><span class="badge badge-success">نشط</span></td></tr>
+                                <tr class="hover:bg-[var(--hover-bg)] group cursor-pointer transition-colors"><td class="px-6 py-3"><div class="flex items-center"><img src="https://ui-avatars.com/api/?name=Omar+Sherbini&background=random" class="w-9 h-9 rounded-full ml-3 border"><span class="font-bold text-[var(--text-primary)]">عمر الشربيني</span></div></td><td class="px-6 py-3 text-[var(--text-secondary)] font-en">omar_sh@istore.eg</td><td class="px-6 py-3 font-bold text-[var(--text-primary)] font-en">$1,450.00</td><td class="px-6 py-3"><span class="badge badge-success">نشط</span></td></tr>
+                                <tr class="hover:bg-[var(--hover-bg)] group cursor-pointer transition-colors"><td class="px-6 py-3"><div class="flex items-center"><img src="https://ui-avatars.com/api/?name=Reem+Nassar&background=random" class="w-9 h-9 rounded-full ml-3 border"><span class="font-bold text-[var(--text-primary)]">ريم نصار</span></div></td><td class="px-6 py-3 text-[var(--text-secondary)] font-en">reem.n@istore.eg</td><td class="px-6 py-3 font-bold text-[var(--text-primary)] font-en">$85.00</td><td class="px-6 py-3"><span class="badge badge-danger">محظور</span></td></tr>
+                                <tr class="hover:bg-[var(--hover-bg)] group cursor-pointer transition-colors"><td class="px-6 py-3"><div class="flex items-center"><img src="https://ui-avatars.com/api/?name=Hassan+Desouky&background=random" class="w-9 h-9 rounded-full ml-3 border"><span class="font-bold text-[var(--text-primary)]">حسن الدسوقي</span></div></td><td class="px-6 py-3 text-[var(--text-secondary)] font-en">h.des@istore.eg</td><td class="px-6 py-3 font-bold text-[var(--text-primary)] font-en">$5,200.00</td><td class="px-6 py-3"><span class="badge badge-success">V.I.P</span></td></tr>
+                                <tr class="hover:bg-[var(--hover-bg)] group cursor-pointer transition-colors"><td class="px-6 py-3"><div class="flex items-center"><img src="https://ui-avatars.com/api/?name=Maryam+Youssef&background=random" class="w-9 h-9 rounded-full ml-3 border"><span class="font-bold text-[var(--text-primary)]">مريم يوسف</span></div></td><td class="px-6 py-3 text-[var(--text-secondary)] font-en">maryam.y@istore.eg</td><td class="px-6 py-3 font-bold text-[var(--text-primary)] font-en">$900.00</td><td class="px-6 py-3"><span class="badge badge-success">نشط</span></td></tr>
+                                <tr class="hover:bg-[var(--hover-bg)] group cursor-pointer transition-colors"><td class="px-6 py-3"><div class="flex items-center"><img src="https://ui-avatars.com/api/?name=Tarek+Hosny&background=random" class="w-9 h-9 rounded-full ml-3 border"><span class="font-bold text-[var(--text-primary)]">طارق حسني</span></div></td><td class="px-6 py-3 text-[var(--text-secondary)] font-en">t.hosny@istore.eg</td><td class="px-6 py-3 font-bold text-[var(--text-primary)] font-en">$210.00</td><td class="px-6 py-3"><span class="badge badge-warning">جديد</span></td></tr>
+                                
+                                <tr class="hover:bg-[var(--hover-bg)] group cursor-pointer transition-colors"><td class="px-6 py-3"><div class="flex items-center"><img src="https://ui-avatars.com/api/?name=Nada+Abdelrahman&background=random" class="w-9 h-9 rounded-full ml-3 border"><span class="font-bold text-[var(--text-primary)]">ندى عبد الرحمن</span></div></td><td class="px-6 py-3 text-[var(--text-secondary)] font-en">nada_ab@istore.eg</td><td class="px-6 py-3 font-bold text-[var(--text-primary)] font-en">$1,500.00</td><td class="px-6 py-3"><span class="badge badge-success">نشط</span></td></tr>
+                                <tr class="hover:bg-[var(--hover-bg)] group cursor-pointer transition-colors"><td class="px-6 py-3"><div class="flex items-center"><img src="https://ui-avatars.com/api/?name=Khaled+Mansour&background=random" class="w-9 h-9 rounded-full ml-3 border"><span class="font-bold text-[var(--text-primary)]">خالد منصور</span></div></td><td class="px-6 py-3 text-[var(--text-secondary)] font-en">k.mansour@istore.eg</td><td class="px-6 py-3 font-bold text-[var(--text-primary)] font-en">$3,400.00</td><td class="px-6 py-3"><span class="badge badge-success">نشط</span></td></tr>
+                                <tr class="hover:bg-[var(--hover-bg)] group cursor-pointer transition-colors"><td class="px-6 py-3"><div class="flex items-center"><img src="https://ui-avatars.com/api/?name=Sarah+Galal&background=random" class="w-9 h-9 rounded-full ml-3 border"><span class="font-bold text-[var(--text-primary)]">سارة جلال</span></div></td><td class="px-6 py-3 text-[var(--text-secondary)] font-en">sarah.g@istore.eg</td><td class="px-6 py-3 font-bold text-[var(--text-primary)] font-en">$12,400.00</td><td class="px-6 py-3"><span class="badge badge-success">V.I.P</span></td></tr>
+                                <tr class="hover:bg-[var(--hover-bg)] group cursor-pointer transition-colors"><td class="px-6 py-3"><div class="flex items-center"><img src="https://ui-avatars.com/api/?name=Abdullah+Elnaggar&background=random" class="w-9 h-9 rounded-full ml-3 border"><span class="font-bold text-[var(--text-primary)]">عبد الله النجار</span></div></td><td class="px-6 py-3 text-[var(--text-secondary)] font-en">abdullah.n@istore.eg</td><td class="px-6 py-3 font-bold text-[var(--text-primary)] font-en">$400.00</td><td class="px-6 py-3"><span class="badge badge-warning">جديد</span></td></tr>
+                                <tr class="hover:bg-[var(--hover-bg)] group cursor-pointer transition-colors"><td class="px-6 py-3"><div class="flex items-center"><img src="https://ui-avatars.com/api/?name=Nehal+Ghanem&background=random" class="w-9 h-9 rounded-full ml-3 border"><span class="font-bold text-[var(--text-primary)]">نهال غانم</span></div></td><td class="px-6 py-3 text-[var(--text-secondary)] font-en">nehal.g@istore.eg</td><td class="px-6 py-3 font-bold text-[var(--text-primary)] font-en">$95.50</td><td class="px-6 py-3"><span class="badge badge-danger">محظور</span></td></tr>
+                                <tr class="hover:bg-[var(--hover-bg)] group cursor-pointer transition-colors"><td class="px-6 py-3"><div class="flex items-center"><img src="https://ui-avatars.com/api/?name=Karim+Elsayed&background=random" class="w-9 h-9 rounded-full ml-3 border"><span class="font-bold text-[var(--text-primary)]">كريم السيد</span></div></td><td class="px-6 py-3 text-[var(--text-secondary)] font-en">karim.s@istore.eg</td><td class="px-6 py-3 font-bold text-[var(--text-primary)] font-en">$50.00</td><td class="px-6 py-3"><span class="badge badge-success">نشط</span></td></tr>
+                                <tr class="hover:bg-[var(--hover-bg)] group cursor-pointer transition-colors"><td class="px-6 py-3"><div class="flex items-center"><img src="https://ui-avatars.com/api/?name=Laila+Fouad&background=random" class="w-9 h-9 rounded-full ml-3 border"><span class="font-bold text-[var(--text-primary)]">ليلى فؤاد</span></div></td><td class="px-6 py-3 text-[var(--text-secondary)] font-en">l.fouad@istore.eg</td><td class="px-6 py-3 font-bold text-[var(--text-primary)] font-en">$2,100.00</td><td class="px-6 py-3"><span class="badge badge-success">نشط</span></td></tr>
+                                <tr class="hover:bg-[var(--hover-bg)] group cursor-pointer transition-colors"><td class="px-6 py-3"><div class="flex items-center"><img src="https://ui-avatars.com/api/?name=Ali+Elshahat&background=random" class="w-9 h-9 rounded-full ml-3 border"><span class="font-bold text-[var(--text-primary)]">علي الشحات</span></div></td><td class="px-6 py-3 text-[var(--text-secondary)] font-en">ali.e@istore.eg</td><td class="px-6 py-3 font-bold text-[var(--text-primary)] font-en">$1,200.00</td><td class="px-6 py-3"><span class="badge badge-success">نشط</span></td></tr>
+                                <tr class="hover:bg-[var(--hover-bg)] group cursor-pointer transition-colors"><td class="px-6 py-3"><div class="flex items-center"><img src="https://ui-avatars.com/api/?name=Menna+Tarek&background=random" class="w-9 h-9 rounded-full ml-3 border"><span class="font-bold text-[var(--text-primary)]">منة الله طارق</span></div></td><td class="px-6 py-3 text-[var(--text-secondary)] font-en">menna.t@istore.eg</td><td class="px-6 py-3 font-bold text-[var(--text-primary)] font-en">$5,700.00</td><td class="px-6 py-3"><span class="badge badge-success">V.I.P</span></td></tr>
+                                <tr class="hover:bg-[var(--hover-bg)] group cursor-pointer transition-colors"><td class="px-6 py-3"><div class="flex items-center"><img src="https://ui-avatars.com/api/?name=Youssef+Hamed&background=random" class="w-9 h-9 rounded-full ml-3 border"><span class="font-bold text-[var(--text-primary)]">يوسف حامد</span></div></td><td class="px-6 py-3 text-[var(--text-secondary)] font-en">y.hamed@istore.eg</td><td class="px-6 py-3 font-bold text-[var(--text-primary)] font-en">$1,050.00</td><td class="px-6 py-3"><span class="badge badge-warning">جديد</span></td></tr>
+                                
+                                <tr class="hover:bg-[var(--hover-bg)] group cursor-pointer transition-colors"><td class="px-6 py-3"><div class="flex items-center"><img src="https://ui-avatars.com/api/?name=Asmaa+Mahmoud&background=random" class="w-9 h-9 rounded-full ml-3 border"><span class="font-bold text-[var(--text-primary)]">أسماء محمود</span></div></td><td class="px-6 py-3 text-[var(--text-secondary)] font-en">asmaa.m@istore.eg</td><td class="px-6 py-3 font-bold text-[var(--text-primary)] font-en">$800.00</td><td class="px-6 py-3"><span class="badge badge-success">نشط</span></td></tr>
+                                <tr class="hover:bg-[var(--hover-bg)] group cursor-pointer transition-colors"><td class="px-6 py-3"><div class="flex items-center"><img src="https://ui-avatars.com/api/?name=Wael+Safwat&background=random" class="w-9 h-9 rounded-full ml-3 border"><span class="font-bold text-[var(--text-primary)]">وائل صفوت</span></div></td><td class="px-6 py-3 text-[var(--text-secondary)] font-en">w.safwat@istore.eg</td><td class="px-6 py-3 font-bold text-[var(--text-primary)] font-en">$1,850.50</td><td class="px-6 py-3"><span class="badge badge-success">نشط</span></td></tr>
+                                <tr class="hover:bg-[var(--hover-bg)] group cursor-pointer transition-colors"><td class="px-6 py-3"><div class="flex items-center"><img src="https://ui-avatars.com/api/?name=Donia+Samir&background=random" class="w-9 h-9 rounded-full ml-3 border"><span class="font-bold text-[var(--text-primary)]">دنيا سمير</span></div></td><td class="px-6 py-3 text-[var(--text-secondary)] font-en">donia.s@istore.eg</td><td class="px-6 py-3 font-bold text-[var(--text-primary)] font-en">$10,400.00</td><td class="px-6 py-3"><span class="badge badge-success">V.I.P</span></td></tr>
+                                <tr class="hover:bg-[var(--hover-bg)] group cursor-pointer transition-colors"><td class="px-6 py-3"><div class="flex items-center"><img src="https://ui-avatars.com/api/?name=Hesham+Abbas&background=random" class="w-9 h-9 rounded-full ml-3 border"><span class="font-bold text-[var(--text-primary)]">هشام عباس</span></div></td><td class="px-6 py-3 text-[var(--text-secondary)] font-en">hesham.a@istore.eg</td><td class="px-6 py-3 font-bold text-[var(--text-primary)] font-en">$0.00</td><td class="px-6 py-3"><span class="badge badge-danger">محظور</span></td></tr>
+                                <tr class="hover:bg-[var(--hover-bg)] group cursor-pointer transition-colors"><td class="px-6 py-3"><div class="flex items-center"><img src="https://ui-avatars.com/api/?name=Sherine+Abdelwahab&background=random" class="w-9 h-9 rounded-full ml-3 border"><span class="font-bold text-[var(--text-primary)]">شيرين عبد الوهاب</span></div></td><td class="px-6 py-3 text-[var(--text-secondary)] font-en">sherine.ab@istore.eg</td><td class="px-6 py-3 font-bold text-[var(--text-primary)] font-en">$2,600.00</td><td class="px-6 py-3"><span class="badge badge-success">نشط</span></td></tr>
+                                <tr class="hover:bg-[var(--hover-bg)] group cursor-pointer transition-colors"><td class="px-6 py-3"><div class="flex items-center"><img src="https://ui-avatars.com/api/?name=Hussein+Fahmy&background=random" class="w-9 h-9 rounded-full ml-3 border"><span class="font-bold text-[var(--text-primary)]">حسين فهمي</span></div></td><td class="px-6 py-3 text-[var(--text-secondary)] font-en">hussein.f@istore.eg</td><td class="px-6 py-3 font-bold text-[var(--text-primary)] font-en">$4,100.00</td><td class="px-6 py-3"><span class="badge badge-success">V.I.P</span></td></tr>
+                                <tr class="hover:bg-[var(--hover-bg)] group cursor-pointer transition-colors"><td class="px-6 py-3"><div class="flex items-center"><img src="https://ui-avatars.com/api/?name=Maha+Ahmed&background=random" class="w-9 h-9 rounded-full ml-3 border"><span class="font-bold text-[var(--text-primary)]">مها أحمد</span></div></td><td class="px-6 py-3 text-[var(--text-secondary)] font-en">maha.a@istore.eg</td><td class="px-6 py-3 font-bold text-[var(--text-primary)] font-en">$650.00</td><td class="px-6 py-3"><span class="badge badge-success">نشط</span></td></tr>
+                                <tr class="hover:bg-[var(--hover-bg)] group cursor-pointer transition-colors"><td class="px-6 py-3"><div class="flex items-center"><img src="https://ui-avatars.com/api/?name=Tamer+Ashour&background=random" class="w-9 h-9 rounded-full ml-3 border"><span class="font-bold text-[var(--text-primary)]">تامر عاشور</span></div></td><td class="px-6 py-3 text-[var(--text-secondary)] font-en">t.ashour@istore.eg</td><td class="px-6 py-3 font-bold text-[var(--text-primary)] font-en">$1,299.00</td><td class="px-6 py-3"><span class="badge badge-warning">جديد</span></td></tr>
+                                <tr class="hover:bg-[var(--hover-bg)] group cursor-pointer transition-colors"><td class="px-6 py-3"><div class="flex items-center"><img src="https://ui-avatars.com/api/?name=Reham+Abdelghafour&background=random" class="w-9 h-9 rounded-full ml-3 border"><span class="font-bold text-[var(--text-primary)]">ريهام عبد الغفور</span></div></td><td class="px-6 py-3 text-[var(--text-secondary)] font-en">reham.g@istore.eg</td><td class="px-6 py-3 font-bold text-[var(--text-primary)] font-en">$5,240.00</td><td class="px-6 py-3"><span class="badge badge-success">V.I.P</span></td></tr>
+                                <tr class="hover:bg-[var(--hover-bg)] group cursor-pointer transition-colors"><td class="px-6 py-3"><div class="flex items-center"><img src="https://ui-avatars.com/api/?name=Mohamed+Henedy&background=random" class="w-9 h-9 rounded-full ml-3 border"><span class="font-bold text-[var(--text-primary)]">محمد هنيدي</span></div></td><td class="px-6 py-3 text-[var(--text-secondary)] font-en">m.henedy@istore.eg</td><td class="px-6 py-3 font-bold text-[var(--text-primary)] font-en">$3,999.00</td><td class="px-6 py-3"><span class="badge badge-success">نشط</span></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

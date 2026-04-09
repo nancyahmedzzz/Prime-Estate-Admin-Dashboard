@@ -1,0 +1,174 @@
+:root {
+    --bg-main: #f4f4f5; 
+    --bg-surface: #ffffff; 
+    --border-color: #e4e4e7; 
+    --text-primary: #09090b;
+    --text-secondary: #52525b;
+    --accent: #000000;
+    --glass-bg: rgba(255, 255, 255, 0.75);
+    --hover-bg: #f4f4f5;
+    --shadow-sm: 0 4px 6px -1px rgba(0,0,0,0.05);
+    --shadow-md: 0 10px 15px -3px rgba(0,0,0,0.08);
+    --shadow-premium: 0 20px 40px -10px rgba(0,0,0,0.1);
+    --shadow-glow: 0 0 25px rgba(0,0,0,0.05);
+}
+
+.dark {
+    --bg-main: #000000;
+    --bg-surface: #0a0a0a;
+    --border-color: #27272a;
+    --text-primary: #ffffff;
+    --text-secondary: #a1a1aa;
+    --accent: #ffffff;
+    --glass-bg: rgba(10, 10, 10, 0.75);
+    --hover-bg: #18181b;
+    --shadow-premium: 0 20px 40px -10px rgba(255,255,255,0.05);
+    --shadow-glow: 0 0 25px rgba(255,255,255,0.06);
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+}
+
+.glass-panel {
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+}
+
+.premium-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: 1.5rem;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.premium-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border-color), transparent);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.premium-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-premium), var(--shadow-glow);
+    border-color: var(--accent);
+}
+
+.premium-card:hover::before {
+    opacity: 1;
+}
+
+/* Scrollbar tweaks */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--text-secondary);
+}
+
+/* Animations */
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+.anim-float {
+    animation: float 4s ease-in-out infinite;
+}
+
+@keyframes pulse-ring {
+    0% { box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.1); }
+    100% { box-shadow: 0 0 0 15px rgba(0, 0, 0, 0); }
+}
+
+.dark .anim-pulse-ring {
+    animation: pulse-ring-dark 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.anim-pulse-ring {
+    animation: pulse-ring 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse-ring-dark {
+    0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.1); }
+    100% { box-shadow: 0 0 0 15px rgba(255, 255, 255, 0); }
+}
+
+/* Stagger Effects */
+.stagger-1 { animation: fadeUp 0.6s ease-out forwards; opacity: 0; }
+.stagger-2 { animation: fadeUp 0.6s ease-out 0.1s forwards; opacity: 0; }
+.stagger-3 { animation: fadeUp 0.6s ease-out 0.2s forwards; opacity: 0; }
+.stagger-4 { animation: fadeUp 0.6s ease-out 0.3s forwards; opacity: 0; }
+.stagger-5 { animation: fadeUp 0.6s ease-out 0.4s forwards; opacity: 0; }
+.stagger-6 { animation: fadeUp 0.6s ease-out 0.5s forwards; opacity: 0; }
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Navigation Links */
+.nav-link {
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-link.active {
+    background: var(--hover-bg);
+}
+
+.nav-link.active::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 60%;
+    width: 3px;
+    background: var(--accent);
+    border-radius: 4px;
+}
+
+/* Badges for completely monochrome Real Estate Status */
+.badge {
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    border: 1px solid var(--border-color);
+}
+
+.badge-dark {
+    background: var(--text-primary);
+    color: var(--bg-main);
+}
+.badge-outlined {
+    background: transparent;
+    color: var(--text-primary);
+}
+.badge-light {
+    background: var(--hover-bg);
+    color: var(--text-secondary);
+}
