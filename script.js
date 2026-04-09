@@ -166,3 +166,25 @@ document.addEventListener('DOMContentLoaded', () => {
     // 3. تهيئة الرسوم البيانية بأمان
     setTimeout(window.initChart, 150);
 });
+
+// 4. دالة إظهار وإخفاء القائمة الجانبية (للموبايل)
+window.toggleSidebar = function() {
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('mobile-overlay');
+    if (!sidebar || !overlay) return;
+    
+    if (sidebar.classList.contains('translate-x-full')) {
+        // Open
+        sidebar.classList.remove('translate-x-full');
+        sidebar.classList.add('translate-x-0');
+        overlay.classList.remove('hidden');
+        // Small delay to allow CSS transition to apply
+        setTimeout(() => overlay.classList.remove('opacity-0'), 10);
+    } else {
+        // Close
+        sidebar.classList.remove('translate-x-0');
+        sidebar.classList.add('translate-x-full');
+        overlay.classList.add('opacity-0');
+        setTimeout(() => overlay.classList.add('hidden'), 300);
+    }
+}
