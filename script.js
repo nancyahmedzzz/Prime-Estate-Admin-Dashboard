@@ -165,6 +165,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 3. تهيئة الرسوم البيانية بأمان
     setTimeout(window.initChart, 150);
+    
+    // Alert للتأكد أن التعديل وصل للمتصفح
+    console.log("تم تحميل التحديث بنجاح");
 });
 
 // 4. دالة إظهار وإخفاء القائمة الجانبية (للموبايل)
