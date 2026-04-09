@@ -191,3 +191,152 @@ window.toggleSidebar = function() {
         setTimeout(() => overlay.classList.add('hidden'), 300);
     }
 }
+
+// --- Notifications Logic ---
+window.toggleNotifications = function(e) {
+    if(e) e.stopPropagation();
+    const dropdown = document.getElementById('notificationsDropdown');
+    if(dropdown) {
+        dropdown.classList.toggle('dropdown-open');
+    }
+};
+
+document.addEventListener('click', function(e) {
+    const dropdown = document.getElementById('notificationsDropdown');
+    const bellBtn = document.getElementById('bellBtn');
+    if (dropdown && bellBtn) {
+        if (dropdown.classList.contains('dropdown-open') && !dropdown.contains(e.target) && !bellBtn.contains(e.target)) {
+            dropdown.classList.remove('dropdown-open');
+        }
+    }
+});
+
+window.openNotificationsDrawer = function() {
+    const dropdown = document.getElementById('notificationsDropdown');
+    if(dropdown) dropdown.classList.remove('dropdown-open');
+    
+    const overlay = document.getElementById('drawerOverlay');
+    const drawer = document.getElementById('notificationsDrawer');
+    if(overlay && drawer) {
+        overlay.classList.remove('hidden');
+        setTimeout(() => overlay.classList.remove('opacity-0'), 10);
+        drawer.classList.remove('-translate-x-full');
+    }
+};
+
+window.closeNotificationsDrawer = function() {
+    const overlay = document.getElementById('drawerOverlay');
+    const drawer = document.getElementById('notificationsDrawer');
+    if(overlay && drawer) {
+        drawer.classList.add('-translate-x-full');
+        overlay.classList.add('opacity-0');
+        setTimeout(() => overlay.classList.add('hidden'), 300);
+    }
+};
+
+window.markAllAsRead = function() {
+    const badges = document.querySelectorAll('#notificationBadge');
+    badges.forEach(b => b.classList.add('hidden'));
+
+    const drawerList = document.getElementById('drawerList');
+    const dropdownList = document.getElementById('dropdownList');
+    
+    const emptyStateHTML = `
+        <div class="h-full flex flex-col items-center justify-center text-center opacity-0 stagger-1 py-10 mt-10">
+            <div class="w-20 h-20 rounded-full bg-green-100 dark:bg-green-900/30 text-green-600 flex items-center justify-center mb-4 border border-green-200 dark:border-green-800">
+                <i data-lucide="check-circle-2" class="w-10 h-10"></i>
+            </div>
+            <h3 class="text-lg font-bold text-[var(--text-primary)]">لا توجد إشعارات جديدة</h3>
+            <p class="text-sm text-[var(--text-secondary)] mt-2 font-medium">لقد قمت بقراءة جميع الإشعارات بنجاح.</p>
+        </div>
+    `;
+    
+    if(drawerList) {
+        drawerList.innerHTML = emptyStateHTML;
+        if(typeof lucide !== 'undefined') lucide.createIcons();
+    }
+    if(dropdownList) dropdownList.innerHTML = '<div class="p-6 text-center text-sm font-medium text-[var(--text-secondary)]">لا توجد إشعارات.</div>';
+};
+
+// --- Modal and Live Table Add Logic ---
+window.openAddModal = function() {
+    const overlay = document.getElementById('addModalOverlay');
+    const content = document.getElementById('addModalContent');
+    if(overlay && content) {
+        overlay.classList.remove('hidden');
+        setTimeout(() => {
+            overlay.classList.remove('opacity-0');
+            content.classList.remove('scale-95', 'opacity-0');
+            content.classList.add('scale-100', 'opacity-100');
+        }, 10);
+    }
+};
+
+window.closeAddModal = function() {
+    const overlay = document.getElementById('addModalOverlay');
+    const content = document.getElementById('addModalContent');
+    const form = document.getElementById('addForm');
+    if(overlay && content) {
+        content.classList.remove('scale-100', 'opacity-100');
+        content.classList.add('scale-95', 'opacity-0');
+        overlay.classList.add('opacity-0');
+        setTimeout(() => {
+            overlay.classList.add('hidden');
+            if(form) form.reset();
+        }, 300);
+    }
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+    const addForm = document.getElementById('addForm');
+    if(addForm) {
+        addForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('addName').value;
+            const email = document.getElementById('addEmail').value;
+            const product = document.getElementById('addProduct').value;
+            const amount = document.getElementById('addAmount').value;
+            const submitBtn = document.getElementById('addSubmitBtn');
+            const spinner = document.getElementById('addSpinner');
+            
+            // Show loading state
+            submitBtn.querySelector('span').textContent = 'جاري الإضافة...';
+            spinner.classList.remove('hidden');
+            
+            setTimeout(() => {
+                const tbody = document.querySelector('tbody');
+                if(tbody) {
+                    const tr = document.createElement('tr');
+                    tr.className = "hover:bg-[var(--hover-bg)] group cursor-pointer transition-colors flash-new-row";
+                    
+                    const avatarStr = name.split(' ').join('+');
+                    tr.innerHTML = `
+                        <td class="px-6 py-3 text-right">
+                            <div class="flex items-center">
+                                <img src="https://ui-avatars.com/api/?name=${avatarStr}&background=random" class="w-9 h-9 rounded-full ml-3 border">
+                                <div class="mr-3">
+                                    <span class="font-bold text-[var(--text-primary)] block">${name}</span>
+                                    <span class="text-[10px] text-[var(--text-secondary)] font-en">${product}</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="px-6 py-3 text-[var(--text-secondary)] font-en text-right">${email}</td>
+                        <td class="px-6 py-3 font-bold text-[var(--text-primary)] font-en text-right">$${parseFloat(amount).toLocaleString('en-US', {minimumFractionDigits: 2})}</td>
+                        <td class="px-6 py-3 text-right"><span class="badge badge-warning">جديد</span></td>
+                    `;
+                    
+                    tbody.prepend(tr);
+                    
+                    if(typeof lucide !== 'undefined') lucide.createIcons();
+                }
+                
+                // Reset form state and close
+                submitBtn.querySelector('span').textContent = 'تأكيد الإضافة';
+                spinner.classList.add('hidden');
+                closeAddModal();
+                
+            }, 1000);
+        });
+    }
+});

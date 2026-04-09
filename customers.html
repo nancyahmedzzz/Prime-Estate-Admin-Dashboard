@@ -73,16 +73,38 @@
                 </div>
             </div>
             
-            <div class="flex items-center gap-4">
-                <button onclick="toggleTheme()" class="w-10 h-10 rounded-full flex items-center justify-center bg-[var(--bg-surface)] border border-[var(--border-color)] text-[var(--text-primary)] hover:bg-[var(--hover-bg)] transition-all hover:-translate-y-1">
+            <div class="flex items-center gap-4 relative">
+                <button onclick="toggleTheme()" class="w-10 h-10 rounded-full flex items-center justify-center bg-[var(--bg-surface)] border border-[var(--border-color)] text-[var(--text-primary)] hover:bg-[var(--hover-bg)] transition-all hover:-translate-y-1 shadow-[var(--shadow-sm)] hover:shadow-[var(--shadow-md)]">
                     <div class="pointer-events-none">
                         <i data-lucide="moon" class="w-4 h-4 hidden dark:block"></i>
                         <i data-lucide="sun" class="w-4 h-4 block dark:hidden"></i>
                     </div>
                 </button>
-                <button class="w-10 h-10 rounded-full flex items-center justify-center bg-[var(--bg-surface)] border border-[var(--border-color)] text-[var(--text-primary)] hover:bg-[var(--hover-bg)] transition-all relative hover:-translate-y-1">
-                    <i data-lucide="bell" class="w-4 h-4"></i>
+                <button id="bellBtn" onclick="toggleNotifications(event)" class="w-10 h-10 rounded-full flex items-center justify-center bg-[var(--bg-surface)] border border-[var(--border-color)] text-[var(--text-primary)] hover:bg-[var(--hover-bg)] transition-all relative hover:-translate-y-1 shadow-[var(--shadow-sm)] hover:shadow-[var(--shadow-md)]">
+                    <i data-lucide="bell" class="w-4 h-4 pointer-events-none"></i>
+                    <span id="notificationBadge" class="absolute top-2.5 right-2.5 w-2 h-2 bg-red-600 rounded-full border-2 border-[var(--bg-surface)] anim-float pointer-events-none"></span>
                 </button>
+
+                <!-- Notifications Dropdown -->
+                <div id="notificationsDropdown" class="absolute top-14 left-0 w-80 bg-[var(--bg-surface)] border border-[var(--border-color)] rounded-2xl shadow-lg opacity-0 pointer-events-none transition-all duration-300 translate-y-2 z-50 overflow-hidden text-right">
+                    <div class="p-4 border-b border-[var(--border-color)] flex justify-between items-center">
+                        <h3 class="font-bold text-sm text-[var(--text-primary)]">الإشعارات</h3>
+                    </div>
+                    <div class="max-h-60 overflow-y-auto p-2" id="dropdownList">
+                        <div class="p-3 hover:bg-[var(--hover-bg)] rounded-xl cursor-pointer transition-colors mb-1 flex items-start gap-3">
+                            <div class="w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-600 flex items-center justify-center flex-shrink-0">
+                               <i data-lucide="user" class="w-4 h-4"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm font-bold text-[var(--text-primary)]">عميل جديد مسجل</p>
+                                <p class="text-xs text-[var(--text-secondary)] mt-0.5">سجل محمود إبراهيم للتو عبر الموقع.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-3 border-t border-[var(--border-color)] bg-[var(--hover-bg)]">
+                         <button onclick="openNotificationsDrawer()" class="w-full text-center text-sm font-bold text-[var(--text-primary)] hover:text-blue-600 transition-colors">عرض جميع الإشعارات</button>
+                    </div>
+                </div>
             </div>
         </header>
 
@@ -95,8 +117,8 @@
                         <h1 class="text-3xl font-bold text-[var(--text-primary)]">قاعدة العملاء الشاملة</h1>
                         <p class="text-sm text-[var(--text-secondary)] mt-1 font-medium">سجل كامل للمستثمرين والعملاء في مشاريع الشركة العقارية.</p>
                     </div>
-                    <button class="bg-[var(--text-primary)] text-[var(--bg-main)] px-5 py-2.5 rounded-xl font-bold text-sm hover:-translate-y-1 transition-transform flex items-center gap-2 shadow-[var(--shadow-md)]">
-                        <i data-lucide="plus" class="w-4 h-4"></i>
+                    <button onclick="openAddModal()" class="bg-[var(--text-primary)] text-[var(--bg-main)] px-5 py-2.5 rounded-xl font-bold text-sm hover:-translate-y-1 transition-transform flex items-center gap-2 shadow-[var(--shadow-md)]">
+                        <i data-lucide="plus" class="w-4 h-4 pointer-events-none"></i>
                         عميل جديد
                     </button>
                 </div>
@@ -106,10 +128,10 @@
                         <table class="w-full text-right border-collapse relative">
                             <thead class="sticky top-0 bg-[var(--bg-surface)] z-10 shadow-sm border-b border-[var(--border-color)]">
                                 <tr class="text-xs font-bold text-[var(--text-secondary)] uppercase">
-                                    <th class="px-6 py-4">اسم العميل</th>
-                                    <th class="px-6 py-4">البريد الإلكتروني</th>
-                                    <th class="px-6 py-4">إجمالي المشتريات</th>
-                                    <th class="px-6 py-4">الحالة</th>
+                                    <th class="px-6 py-4 text-right whitespace-nowrap">اسم العميل</th>
+                                    <th class="px-6 py-4 text-right whitespace-nowrap">البريد الإلكتروني</th>
+                                    <th class="px-6 py-4 text-right whitespace-nowrap">إجمالي المشتريات</th>
+                                    <th class="px-6 py-4 text-right whitespace-nowrap">الحالة</th>
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-[var(--border-color)] text-sm">
@@ -153,6 +175,84 @@
             </div>
         </main>
     </div>
+
+    <!-- Notifications Drawer Overlay -->
+    <div id="drawerOverlay" onclick="closeNotificationsDrawer()" class="fixed inset-0 bg-black/60 z-[60] backdrop-blur-overlay transition-opacity duration-300 opacity-0 hidden"></div>
+    
+    <!-- Notifications Drawer -->
+    <div id="notificationsDrawer" class="fixed top-0 left-0 w-80 md:w-96 h-full bg-[var(--bg-surface)] z-[70] transform -translate-x-full transition-transform duration-300 flex flex-col shadow-2xl border-r border-[var(--border-color)]">
+        <div class="p-6 border-b border-[var(--border-color)] flex justify-between items-center bg-[var(--bg-main)]">
+            <h2 class="text-xl font-bold text-[var(--text-primary)]">كل الإشعارات</h2>
+            <button onclick="closeNotificationsDrawer()" class="w-8 h-8 rounded-full flex items-center justify-center bg-[var(--bg-surface)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] border border-[var(--border-color)] hover:bg-[var(--hover-bg)] transition-colors">
+                <i data-lucide="x" class="w-4 h-4 pointer-events-none"></i>
+            </button>
+        </div>
+        <div id="drawerList" class="flex-1 overflow-y-auto p-4 space-y-3">
+            <div class="p-4 rounded-xl bg-[var(--hover-bg)] border border-[var(--border-color)] flex items-start gap-4">
+                <div class="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-600 flex items-center justify-center flex-shrink-0 mt-1">
+                   <i data-lucide="user" class="w-5 h-5"></i>
+                </div>
+                <div>
+                    <h4 class="text-sm font-bold text-[var(--text-primary)]">عميل جديد مسجل</h4>
+                    <p class="text-xs text-[var(--text-secondary)] mt-1 leading-relaxed">سجل محمود إبراهيم للتو.</p>
+                </div>
+            </div>
+        </div>
+        <div class="p-4 border-t border-[var(--border-color)] bg-[var(--bg-main)]">
+            <button id="markReadBtn" onclick="markAllAsRead()" class="w-full bg-[var(--text-primary)] text-[var(--bg-main)] py-3 rounded-xl font-bold flex items-center justify-center gap-2 hover:-translate-y-1 transition-transform shadow-[var(--shadow-sm)]">
+                <i data-lucide="check-check" class="w-5 h-5"></i>
+                تحديد الكل كمقروء
+            </button>
+        </div>
+    </div>
+
+    <!-- Add Element Modal -->
+    <div id="addModalOverlay" class="fixed inset-0 bg-black/50 z-[80] backdrop-blur-overlay transition-opacity duration-300 opacity-0 hidden flex items-center justify-center">
+        <div id="addModalContent" class="bg-[var(--bg-surface)] w-full max-w-md mx-4 rounded-2xl shadow-2xl transform scale-95 opacity-0 transition-all duration-300 pointer-events-auto border border-[var(--border-color)] flex flex-col overflow-hidden max-h-[90vh]">
+            <div class="p-6 border-b border-[var(--border-color)] flex justify-between items-center bg-[var(--bg-main)] sticky top-0 z-10">
+                <h2 class="text-lg font-bold text-[var(--text-primary)] flex items-center gap-2">
+                    <i data-lucide="user-plus" class="w-5 h-5"></i>
+                    إضافة عميل جديد
+                </h2>
+                <button onclick="closeAddModal()" class="w-8 h-8 rounded-full flex items-center justify-center bg-[var(--bg-surface)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] border border-[var(--border-color)] hover:bg-[var(--hover-bg)] transition-colors">
+                    <i data-lucide="x" class="w-4 h-4 pointer-events-none"></i>
+                </button>
+            </div>
+            
+            <div class="p-6 overflow-y-auto">
+                <form id="addForm" class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-bold text-[var(--text-primary)] mb-1">اسم العميل</label>
+                        <input type="text" id="addName" required class="w-full bg-[var(--bg-main)] border border-[var(--border-color)] rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--accent)] transition-all text-[var(--text-primary)] placeholder-[var(--text-secondary)]" placeholder="مثال: أحمد محمد">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold text-[var(--text-primary)] mb-1">البريد الإلكتروني</label>
+                        <input type="email" id="addEmail" required class="w-full bg-[var(--bg-main)] border border-[var(--border-color)] rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--accent)] transition-all text-[var(--text-primary)] placeholder-[var(--text-secondary)] font-en" placeholder="example@istore.eg">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold text-[var(--text-primary)] mb-1">المنتج المُشترى</label>
+                        <input type="text" id="addProduct" required class="w-full bg-[var(--bg-main)] border border-[var(--border-color)] rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--accent)] transition-all text-[var(--text-primary)] placeholder-[var(--text-secondary)] font-en" placeholder="مثال: Villa V">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold text-[var(--text-primary)] mb-1">المبلغ المدفوع ($)</label>
+                        <input type="number" id="addAmount" required class="w-full bg-[var(--bg-main)] border border-[var(--border-color)] rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--accent)] transition-all text-[var(--text-primary)] placeholder-[var(--text-secondary)] font-en" placeholder="0.00">
+                    </div>
+                    
+                    <div class="pt-4 mt-2 border-t border-[var(--border-color)] space-y-2">
+                        <button type="submit" id="addSubmitBtn" class="w-full bg-[var(--text-primary)] text-[var(--bg-main)] py-3 rounded-xl font-bold flex items-center justify-center gap-2 hover:opacity-90 transition-opacity">
+                            <span>تأكيد الإضافة</span>
+                            <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                            <div id="addSpinner" class="w-4 h-4 border-2 border-[var(--bg-main)] border-t-transparent rounded-full animate-spin hidden ml-2"></div>
+                        </button>
+                        <button type="button" onclick="closeAddModal()" class="w-full bg-[var(--hover-bg)] text-[var(--text-primary)] border border-[var(--border-color)] py-3 rounded-xl font-bold flex items-center justify-center gap-2 transition-colors hover:bg-[var(--border-color)]">
+                            إلغاء
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <script src="script.js?v=2"></script>
 </body>
 </html>

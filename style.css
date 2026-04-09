@@ -172,3 +172,26 @@ body {
     background: var(--hover-bg);
     color: var(--text-secondary);
 }
+
+/* Notifications Dropdown Animation */
+.dropdown-open {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    transform: translateY(0) !important;
+}
+
+/* Table Row Highlight Animation */
+@keyframes flashRow {
+    0% { background-color: rgba(34, 197, 94, 0.2); } /* Green tint */
+    100% { background-color: transparent; }
+}
+.flash-new-row {
+    animation: flashRow 2s ease-out forwards;
+}
+
+/* Modal and Drawer Backdrop Blur */
+.backdrop-blur-overlay {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
